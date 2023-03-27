@@ -11,7 +11,7 @@ import SwiftUI
 struct Alarmer_TestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AlarmListView()
         }
     }
 }

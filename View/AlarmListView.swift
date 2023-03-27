@@ -28,39 +28,51 @@ struct AlarmListView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 0) { // Adjust spacing as needed
-                    ForEach(alarms.indices, id: \.self) { index in
-                        NavigationLink(destination: AlarmDetailView(alarm: $alarms[index], onSave: { updatedAlarm in
-                            updateAlarm(updatedAlarm)
-                        })) {
-                            AlarmRow(alarm: $alarms[index], onToggle: {
-                                toggleAlarmEnabled(index)
-                            })
+            ZStack {
+                ScrollView {
+                    VStack(spacing: 0) { // Adjust spacing as needed
+                        ForEach(alarms.indices, id: \.self) { index in
+                            NavigationLink(destination: AlarmDetailView(alarm: $alarms[index], onSave: { updatedAlarm in
+                                updateAlarm(updatedAlarm)
+                            })) {
+                                AlarmRow(alarm: $alarms[index], onToggle: {
+                                    toggleAlarmEnabled(index)
+                                })
+                            }
                         }
-                    }
-                    .padding(.vertical, 20) // Add this line for top and bottom padding
+                        .padding(.vertical, 20) // Add this line for top and bottom padding
+                    }.padding(.bottom, 120)
+                    .navigationTitle("Alarmers")
                 }
-                .navigationTitle("Alarmers")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
                         Button(action: {
                             isPresentingAlarmDetailView.toggle()
                         }) {
-                            Image(systemName: "plus")
+                            ZStack {
+                                Circle()
+                                    .frame(width: 80, height: 80)
+                                    .foregroundColor(Color(red: 1, green: 0.72, blue: 0)).shadow(radius: 4, y: 4)
+                                Image(systemName: "plus")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 40, weight: .bold))
+                            }
                         }
+                        .padding(.bottom, 15)
+                        .padding(.trailing, 155)
                     }
                 }
-                .sheet(isPresented: $isPresentingAlarmDetailView) {
-                    AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "", phoneNumber: "", isEnabled: false, isRecurring: false)), onSave: { newAlarm in
-                        alarms.append(newAlarm)
-                        isPresentingAlarmDetailView.toggle()
-                    })
-                }
+            }
+            .sheet(isPresented: $isPresentingAlarmDetailView) {
+                AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "", phoneNumber: "", isEnabled: false, isRecurring: false)), onSave: { newAlarm in
+                    alarms.append(newAlarm)
+                    isPresentingAlarmDetailView.toggle()
+                })
             }
         }
-
-        
     }
     
     struct AlarmRow: View {
@@ -79,8 +91,7 @@ struct AlarmListView: View {
                                 .font(.subheadline)
                                 .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
                             
-                            Text(Formatters.timeFormatter.string(from: alarm.time))
-                                .font(.system(size: 34))
+                            Text(Formatters.timeFormatter.string(from:alarm.time)).font(.system(size: 34))
                                 .fontWeight(.bold)
                                 .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
                         }
@@ -118,6 +129,7 @@ struct AlarmListView: View {
             alarms[index] = updatedAlarm
         }
     }
+    
     struct AlarmListView_Previews: PreviewProvider {
         static var previews: some View {
             AlarmListView()
