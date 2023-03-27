@@ -67,3 +67,4 @@ class AlarmNotificationManager: NSObject, UNUserNotificationCenterDelegate {
 //This implementation of AlarmNotificationManager provides the required functionality to schedule, cancel, and handle local notifications. It uses a singleton pattern with the shared instance for easy access throughout the app.
 
 // Remember to call requestNotificationAuthorization() to request the necessary permissions from the user before scheduling any notifications.
+// new file
