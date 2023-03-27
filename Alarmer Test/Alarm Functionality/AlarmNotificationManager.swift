@@ -68,3 +68,4 @@ class AlarmNotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
 // Remember to call requestNotificationAuthorization() to request the necessary permissions from the user before scheduling any notifications.
 // new file
+// new 
