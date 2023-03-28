@@ -12,10 +12,11 @@ struct Alarm: Identifiable {
 struct Formatters {
     static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.timeStyle = .short
+        formatter.dateFormat = "h:mm a" // Set the format explicitly
         return formatter
     }()
 }
+
 
 struct AlarmListView: View {
     @State private var alarms: [Alarm] = [
@@ -72,7 +73,8 @@ struct AlarmListView: View {
                     isPresentingAlarmDetailView.toggle()
                 })
             }
-        }
+        }.accentColor(Color(red: 1, green: 0.72, blue: 0))
+        
     }
     
     struct AlarmRow: View {

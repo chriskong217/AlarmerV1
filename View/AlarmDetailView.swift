@@ -1,5 +1,16 @@
 import SwiftUI
+import UIKit
 
+extension Date {
+    var hour12: Bool {
+        let hour = Calendar.current.component(.hour, from: self)
+        return hour >= 12
+    }
+}
+
+
+
+                                                      
 struct AlarmDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var alarm: Alarm
@@ -25,14 +36,19 @@ struct AlarmDetailView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                TextField("Message", text: $message)
-                TextField("Phone Number", text: $phoneNumber)
-                    .keyboardType(.phonePad)
-                Toggle("Enabled", isOn: $isEnabled)
-                Toggle("Recurring", isOn: $isRecurring)
-                Toggle("Location Based", isOn: $isLocationBased)
+            VStack {
+                DatePicker("", selection: $selectedTime, displayedComponents: [.hourAndMinute])
+                    .datePickerStyle(WheelDatePickerStyle())
+                    .labelsHidden()
+                    .padding()
+                Form {
+                    TextField("Message", text: $message)
+                    TextField("Phone Number", text: $phoneNumber)
+                        .keyboardType(.phonePad)
+                    Toggle("Enabled", isOn: $isEnabled)
+                    Toggle("Recurring", isOn: $isRecurring)
+                    Toggle("Location Based", isOn: $isLocationBased)
+                }
             }
             .navigationTitle("Alarm Details")
             .toolbar {
@@ -40,18 +56,20 @@ struct AlarmDetailView: View {
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .foregroundColor(Color(red: 1, green: 0.72, blue: 0))
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         let updatedAlarm = Alarm(id: alarm.id, time: selectedTime, message: message, phoneNumber: phoneNumber, isEnabled: isEnabled, isRecurring: isRecurring)
                         onSave?(updatedAlarm)
                         presentationMode.wrappedValue.dismiss()
-                    }
+                    }.foregroundColor(Color(red: 1, green: 0.72, blue: 0))
                 }
             }
         }
     }
 }
+
 
 struct AlarmDetailView_Previews: PreviewProvider {
     static var previews: some View {
