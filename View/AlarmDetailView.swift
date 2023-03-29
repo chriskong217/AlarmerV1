@@ -8,9 +8,6 @@ extension Date {
     }
 }
 
-
-
-                                                      
 struct AlarmDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var alarm: Alarm
@@ -51,6 +48,8 @@ struct AlarmDetailView: View {
                 }
             }
             .navigationTitle("Alarm Details")
+             // Hide the navigation bar
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
