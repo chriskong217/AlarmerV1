@@ -25,11 +25,8 @@ class AlarmNotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    func scheduleLocalNotification(alarm: Alarm) {
-        let content = UNMutableNotificationContent()
-        content.title = "Alarm"
-        content.sound = UNNotificationSound.defaultCritical
-        content.userInfo = ["id": alarm.id.uuidString]
+    func scheduleLocalNotification(alarm: Alarm, content: UNMutableNotificationContent) {
+        let content = content
         
         let interval = 5.0
         let maxNotifications = 50
@@ -63,6 +60,16 @@ class AlarmNotificationManager: NSObject, UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+
+private func createNotificationContent(alarm: Alarm) -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "Alarm"
+        content.body = "Time to wake up!"
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "your_obnoxious_sound_file_name.mp3"))
+        content.categoryIdentifier = "ALARM"
+        content.userInfo = ["id": alarm.id]
+        return content
+    }
 
 //This implementation of AlarmNotificationManager provides the required functionality to schedule, cancel, and handle local notifications. It uses a singleton pattern with the shared instance for easy access throughout the app.
 

@@ -12,13 +12,17 @@ class AlarmScheduler {
     static let shared = AlarmScheduler()
     private let notificationManager = AlarmNotificationManager.shared
     
-    private init() {}
+    private init() {
+           notificationManager.requestNotificationAuthorization()
+       }
     
     func scheduleAlarm(alarm: Alarm) {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour, .minute, .second], from: alarm.time)
         let newAlarm = Alarm(id: alarm.id, time: calendar.date(from: components)!, message: alarm.message, phoneNumber: alarm.phoneNumber, isEnabled: alarm.isEnabled, isRecurring: alarm.isRecurring)
-        notificationManager.scheduleLocalNotification(alarm: newAlarm)
+        let content = createNotificationContent(alarm: newAlarm)
+        notificationManager.scheduleLocalNotification(alarm: newAlarm, content: content)
+
     }
     
     func updateAlarm(oldAlarm: Alarm, newAlarm: Alarm) {
@@ -35,7 +39,7 @@ class AlarmScheduler {
     private func createNotificationContent(alarm: Alarm) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "Alarm"
-        content.body = "Time to wake up!"
+        content.body = alarm.message
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "your_obnoxious_sound_file_name.mp3"))
         content.categoryIdentifier = "ALARM"
         content.userInfo = ["id": alarm.id]

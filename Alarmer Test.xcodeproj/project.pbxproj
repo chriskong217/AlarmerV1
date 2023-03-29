@@ -15,7 +15,6 @@
 		8D2A5BF729D0D9B70084FDCB /* AlarmDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */; };
 		BBCE3A0829D10CC600FF55D8 /* AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCE3A0729D10CC600FF55D8 /* AlarmScheduler.swift */; };
 		BBCE3A0A29D10D7900FF55D8 /* AlarmNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCE3A0929D10D7900FF55D8 /* AlarmNotificationManager.swift */; };
-		BBF4525329D20B5C00665EE4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4525229D20B5C00665EE4 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,6 @@
 		8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailView.swift; sourceTree = "<group>"; };
 		BBCE3A0729D10CC600FF55D8 /* AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmScheduler.swift; sourceTree = "<group>"; };
 		BBCE3A0929D10D7900FF55D8 /* AlarmNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmNotificationManager.swift; sourceTree = "<group>"; };
-		BBF4525229D20B5C00665EE4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +82,6 @@
 			children = (
 				8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */,
 				8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */,
-				BBF4525229D20B5C00665EE4 /* TestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,7 +165,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBF4525329D20B5C00665EE4 /* TestView.swift in Sources */,
 				BBCE3A0829D10CC600FF55D8 /* AlarmScheduler.swift in Sources */,
 				8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */,
 				BBCE3A0A29D10D7900FF55D8 /* AlarmNotificationManager.swift in Sources */,
