@@ -1,3 +1,4 @@
+//This is the current AlarmListView
 import SwiftUI
 
 struct Alarm: Identifiable {
@@ -21,13 +22,13 @@ struct Formatters {
 struct AlarmListView: View {
     @State private var alarms: [Alarm] = [
         // Example alarms
-        Alarm(time: Date(), message: "Wake up!", phoneNumber: "+1234567890", isEnabled: true, isRecurring: true),
-        Alarm(time: Date().addingTimeInterval(3600), message: "Get ready for work", phoneNumber: "+0987654321", isEnabled: false, isRecurring: false)
+        
     ]
     
     @State private var isPresentingAlarmDetailView = false
     @State private var selectedAlarm: Alarm?
-
+    @State private var showDeleteButton: Bool = false
+    
     var body: some View {
             NavigationView {
                 ZStack {
@@ -43,7 +44,7 @@ struct AlarmListView: View {
                                     })
                                 }
                             }
-                            .padding(.vertical, 20) // Add this line for top and bottom padding
+                            .padding(.vertical, 15) // Add this line for top and bottom padding
                         }
                         .padding(.bottom, 120)
                         .navigationTitle("Alarmers")
@@ -66,20 +67,23 @@ struct AlarmListView: View {
                                         .font(.system(size: 40, weight: .bold))
                                 }
                             }
-                            .padding(.bottom, 15)
-                            .padding(.trailing, 155)
+                            .padding(.bottom, 20)
+                            .padding(.trailing, 25)
                         }
                     }
                 }
                 .sheet(isPresented: $isPresentingAlarmDetailView) {
                     if let selectedAlarm = selectedAlarm,
                        let index = alarms.firstIndex(where: { $0.id == selectedAlarm.id }) {
-                        AlarmDetailView(alarm: .constant(alarms[index]), onSave: { updatedAlarm in
+                        AlarmDetailView(alarm: .constant(alarms[index]), showDeleteButton: .constant(true), onSave: { updatedAlarm in
                             updateAlarm(updatedAlarm)
+                            isPresentingAlarmDetailView.toggle()
+                        }, onDelete: {
+                            alarms.remove(at: index)
                             isPresentingAlarmDetailView.toggle()
                         })
                     } else {
-                        AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "", phoneNumber: "", isEnabled: false, isRecurring: false)), onSave: { newAlarm in
+                        AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "", phoneNumber: "", isEnabled: false, isRecurring: false)),showDeleteButton: .constant(false), onSave: { newAlarm in
                             alarms.append(newAlarm)
                             isPresentingAlarmDetailView.toggle()
                         })
@@ -100,7 +104,7 @@ struct AlarmListView: View {
                       : Color(red: 0.89, green: 0.87, blue: 0.84)).frame(width: 326, height: 114).shadow(radius: 4, y: 4)
                 .overlay(
                     HStack {
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text(alarm.isRecurring ? "Recurring" : "Not Recurring")
                                 .font(.subheadline)
                                 .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
