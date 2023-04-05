@@ -26,30 +26,42 @@ struct AlarmListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                           VStack(spacing: 40) { // Adjust spacing as needed
-                               ForEach($alarms) { alarm in
-                                   AlarmRow(alarm: alarm)
-                               }
-                           }
-                           .padding(.vertical, 60) // Add this line for top and bottom padding
-                       }.navigationTitle("Alarmers")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        isPresentingAlarmDetailView.toggle()
-                    }) {
-                        Image(systemName: "plus")
+                VStack(spacing: 40) { // Adjust spacing as needed
+                    ForEach($alarms) { alarm in
+                        AlarmRow(alarm: alarm)
                     }
                 }
-            }
-            .sheet(isPresented: $isPresentingAlarmDetailView) {
-                AlarmDetailView { alarm in
-                    addAlarm(alarm)
-                    isPresentingAlarmDetailView.toggle()
+                .padding(.vertical, 60) // Add this line for top and bottom padding
+            }.navigationTitle("Alarmers")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            isPresentingAlarmDetailView.toggle()
+                        }) {
+                            Image(systemName: "plus")
+                        }
+                    }
                 }
-            }
-        }
-    }
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        NavigationLink(destination: CameraView()) {
+                            Image("CameraIcon")
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                        }
+                    }
+                    
+                    }.sheet(isPresented: $isPresentingAlarmDetailView) {
+                            AlarmDetailView { alarm in
+                                addAlarm(alarm)
+                                isPresentingAlarmDetailView.toggle()
+                            }
+                        }
+                        
+                    }
+                }
+        
     
     func addAlarm(_ alarm: Alarm) {
         alarms.append(alarm)
@@ -102,8 +114,10 @@ struct AlarmRow: View {
                 }
                 .padding()
             )
+        
     }
 }
+
 struct AlarmListView_Previews: PreviewProvider {
     static var previews: some View {
         AlarmListView()
