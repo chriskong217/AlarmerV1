@@ -1,4 +1,4 @@
-//
+
 //  AlarmListView.swift
 //  Alarmer Test
 //
@@ -44,7 +44,8 @@ struct AlarmListView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
-                        NavigationLink(destination: CameraView()) {
+                        NavigationLink(destination: CodeScannerView(codeTypes: [.qr]) { result in
+                        }) {
                             Image("CameraIcon")
                                 .renderingMode(.original)
                                 .resizable()
