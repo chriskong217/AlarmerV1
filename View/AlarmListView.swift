@@ -1,3 +1,13 @@
+
+
+//  AlarmListView.swift
+//  Alarmer Test
+//
+//  Created by user234729 on 3/26/23.
+//
+
+=======
+
 import SwiftUI
 
 struct Alarm: Identifiable {
@@ -29,6 +39,46 @@ struct AlarmListView: View {
     
     var body: some View {
         NavigationView {
+
+            ScrollView {
+                VStack(spacing: 40) { // Adjust spacing as needed
+                    ForEach($alarms) { alarm in
+                        AlarmRow(alarm: alarm)
+                    }
+                }
+                .padding(.vertical, 60) // Add this line for top and bottom padding
+            }.navigationTitle("Alarmers")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            isPresentingAlarmDetailView.toggle()
+                        }) {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        NavigationLink(destination: CodeScannerView(codeTypes: [.qr]) { result in
+                        }) {
+                            Image("CameraIcon")
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                        }
+                    }
+                    
+                    }.sheet(isPresented: $isPresentingAlarmDetailView) {
+                            AlarmDetailView { alarm in
+                                addAlarm(alarm)
+                                isPresentingAlarmDetailView.toggle()
+                            }
+                        }
+                        
+                    }
+                }
+        
+=======
             ZStack {
                 ScrollView {
                     VStack(spacing: 0) { // Adjust spacing as needed
@@ -76,6 +126,7 @@ struct AlarmListView: View {
         }.accentColor(Color(red: 1, green: 0.72, blue: 0))
         
     }
+
     
     struct AlarmRow: View {
         @Binding var alarm: Alarm
@@ -126,6 +177,54 @@ struct AlarmListView: View {
         alarms[index].isEnabled.toggle()
     }
     
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .fill(alarm.isEnabled
+                ? Color(red: 1, green: 0.82, blue: 0.34)
+                : Color(red: 0.89, green: 0.87, blue: 0.84)).frame(width: 326, height: 114).shadow(radius: 4, y: 4)
+            .overlay(
+                HStack {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(alarm.isRecurring ? "Recurring" : "Not Recurring")
+                            .font(.subheadline)
+                            .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
+                                             
+                        Text(alarm.time, style: .time)
+                            .font(.system(size: 34)) // Adjust font size as needed
+                            .fontWeight(.bold)
+                            .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
+                    }
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation {
+                            alarm.isEnabled.toggle()
+                        }
+                    }){
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 25)
+                                .frame(width: 83, height: 41)
+                                .foregroundColor(alarm.isEnabled ? Color(red: 1, green: 0.72, blue: 0) : .gray)
+                            
+                            Circle()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.white)
+                                .offset(x: alarm.isEnabled ? 20 : -20)
+                        }
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                }
+                .padding()
+            )
+        
+    }
+}
+
+struct AlarmListView_Previews: PreviewProvider {
+    static var previews: some View {
+        AlarmListView()
+=======
     func updateAlarm(_ updatedAlarm: Alarm) {
         if let index = alarms.firstIndex(where: { $0.id == updatedAlarm.id }) {
             alarms[index] = updatedAlarm
@@ -136,5 +235,6 @@ struct AlarmListView: View {
         static var previews: some View {
             AlarmListView()
         }
+
     }
 }

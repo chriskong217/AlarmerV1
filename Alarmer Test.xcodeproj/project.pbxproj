@@ -13,6 +13,8 @@
 		8D2A5BEB29D0D7B80084FDCB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BEA29D0D7B80084FDCB /* Preview Assets.xcassets */; };
 		8D2A5BF529D0D8F60084FDCB /* AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */; };
 		8D2A5BF729D0D9B70084FDCB /* AlarmDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */; };
+		ED7C5BD229E60BC10007F3AB /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */; };
+		ED7C5BD429E60BEF0007F3AB /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		8D2A5BEA29D0D7B80084FDCB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListView.swift; sourceTree = "<group>"; };
 		8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailView.swift; sourceTree = "<group>"; };
+		ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
+		ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 			children = (
 				8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */,
 				8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */,
+				ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */,
+				ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,6 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C5BD229E60BC10007F3AB /* CodeScanner.swift in Sources */,
+				ED7C5BD429E60BEF0007F3AB /* ScannerViewController.swift in Sources */,
 				8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */,
 				8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */,
 				8D2A5BF529D0D8F60084FDCB /* AlarmListView.swift in Sources */,
