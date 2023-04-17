@@ -13,96 +13,79 @@ struct Alarm: Identifiable {
 struct Formatters {
     static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a" // Set the format explicitly
+        formatter.dateFormat = "h:mm a"
         return formatter
     }()
 }
 
-
 struct AlarmListView: View {
     @State private var alarms: [Alarm] = [
         // Example alarms
-        
     ]
     
     @State private var isPresentingAlarmDetailView = false
     @State private var selectedAlarm: Alarm?
-    @State private var showDeleteButton: Bool = false
     
     var body: some View {
-            NavigationView {
-                ZStack {
-                    ScrollView {
-                        VStack(spacing: 0) { // Adjust spacing as needed
-                            ForEach(alarms.indices, id: \.self) { index in
-                                Button(action: {
-                                    selectedAlarm = alarms[index]
-                                    isPresentingAlarmDetailView.toggle()
-                                }) {
-                                    AlarmRow(alarm: $alarms[index], onToggle: {
-                                        toggleAlarmEnabled(index)
-                                    })
-                                }
-                            }
-                            .padding(.vertical, 15) // Add this line for top and bottom padding
-                        }
-                        .padding(.bottom, 120)
-                        .navigationTitle("Alarmers")
-                        .toolbar {
-                            ToolbarItem(placement: .bottomBar) {
-                                NavigationLink(destination: CodeScannerView(codeTypes: [.qr]) { result in
-                                }) {
-                                    Image("CameraIcon")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .frame(width: 60, height: 60)
-                                }
-                            }
-                        }
-                    }
-
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
+        NavigationView {
+            ZStack {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ForEach(alarms.indices, id: \.self) { index in
                             Button(action: {
-                                selectedAlarm = nil
+                                selectedAlarm = alarms[index]
                                 isPresentingAlarmDetailView.toggle()
                             }) {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 80, height: 80)
-                                        .foregroundColor(Color(red: 1, green: 0.72, blue: 0)).shadow(radius: 4, y: 4)
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 40, weight: .bold))
-                                }
+                                AlarmRow(alarm: $alarms[index], onToggle: {
+                                    toggleAlarmEnabled(index)
+                                })
                             }
-                            .padding(.bottom, 20)
-                            .padding(.trailing, 25)
                         }
+                        .padding(.vertical, 15)
+                    }
+                    .padding(.bottom, 120)
+                    .navigationTitle("Alarmers")
+                }
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            selectedAlarm = nil
+                            isPresentingAlarmDetailView.toggle()
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 80, height: 80)
+                                    .foregroundColor(Color(red: 1, green: 0.72, blue: 0)).shadow(radius: 4, y: 4)
+                                Image(systemName: "plus")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 40, weight: .bold))
+                            }
+                        }
+                        .padding(.bottom, 20)
+                        .padding(.trailing, 25)
                     }
                 }
-                .sheet(isPresented: $isPresentingAlarmDetailView) {
-                    if let selectedAlarm = selectedAlarm,
-                       let index = alarms.firstIndex(where: { $0.id == selectedAlarm.id }) {
-                        AlarmDetailView(alarm: .constant(alarms[index]), showDeleteButton: .constant(true), onSave: { updatedAlarm in
-                            updateAlarm(updatedAlarm)
-                            isPresentingAlarmDetailView.toggle()
-                        }, onDelete: {
-                            alarms.remove(at: index)
-                            isPresentingAlarmDetailView.toggle()
-                        })
-                    } else {
-                        AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "", phoneNumber: "", isEnabled: false, isRecurring: false)),showDeleteButton: .constant(false), onSave: { newAlarm in
-                            alarms.append(newAlarm)
-                            isPresentingAlarmDetailView.toggle()
-                        })
-                    }
-                }
-            }.accentColor(Color(red: 1, green: 0.72, blue: 0))
-
+            }
+            .sheet(isPresented: $isPresentingAlarmDetailView) {
+                if let selectedAlarm = selectedAlarm,
+                   let index = alarms.firstIndex(where: { $0.id == selectedAlarm.id }) {
+                    AlarmDetailView(alarm: $alarms[index], onSave: { updatedAlarm in
+                        updateAlarm(updatedAlarm)
+                        isPresentingAlarmDetailView.toggle()
+                    })
+                } else {
+                    AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "", phoneNumber: "", isEnabled: false, isRecurring: false)), onSave: { newAlarm in
+                        alarms.append(newAlarm)
+                        isPresentingAlarmDetailView.toggle()
+                    })
+            }
         }
+    }
+    .accentColor(Color(red: 1, green: 0.72, blue: 0))
+    }
     
     struct AlarmRow: View {
         @Binding var alarm: Alarm
@@ -120,7 +103,7 @@ struct AlarmListView: View {
                                 .font(.subheadline)
                                 .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
                             
-                            Text(Formatters.timeFormatter.string(from:alarm.time)).font(.system(size: 34))
+                            Text(Formatters.timeFormatter.string(from: alarm.time)).font(.system(size: 34))
                                 .fontWeight(.bold)
                                 .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
                         }
@@ -163,4 +146,5 @@ struct AlarmListView: View {
         static var previews: some View {
             AlarmListView()
         }
-    }}
+    }
+}
