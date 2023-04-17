@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39EFADD229E7712700D09081 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 39EFADD129E7712700D09081 /* Collections */; };
 		8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */; };
 		8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE529D0D7B60084FDCB /* ContentView.swift */; };
 		8D2A5BE829D0D7B80084FDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE729D0D7B80084FDCB /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39EFADD229E7712700D09081 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +105,9 @@
 			dependencies = (
 			);
 			name = "Alarmer Test";
+			packageProductDependencies = (
+				39EFADD129E7712700D09081 /* Collections */,
+			);
 			productName = "Alarmer Test";
 			productReference = 8D2A5BE029D0D7B60084FDCB /* Alarmer Test.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +136,9 @@
 				Base,
 			);
 			mainGroup = 8D2A5BD729D0D7B60084FDCB;
+			packageReferences = (
+				39EFADD029E7712700D09081 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 8D2A5BE129D0D7B60084FDCB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -291,6 +299,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview Content\"";
+				DEVELOPMENT_TEAM = G2C2L6A2CR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -298,6 +307,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,7 +328,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview  Content\"";
+				DEVELOPMENT_TEAM = G2C2L6A2CR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -326,6 +337,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -361,6 +373,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39EFADD029E7712700D09081 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39EFADD129E7712700D09081 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EFADD029E7712700D09081 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D2A5BD829D0D7B60084FDCB /* Project object */;
 }
