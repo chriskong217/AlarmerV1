@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C5FA596C64DB05F13DA570F /* Pods_Alarmer_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E30329FA9E844AC2350905 /* Pods_Alarmer_Test.framework */; };
+		3722759929EE25B600B0CCB4 /* TwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3722759829EE25B600B0CCB4 /* TwilioManager.swift */; };
 		8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */; };
 		8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE529D0D7B60084FDCB /* ContentView.swift */; };
 		8D2A5BE829D0D7B80084FDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE729D0D7B80084FDCB /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3722759829EE25B600B0CCB4 /* TwilioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwilioManager.swift; sourceTree = "<group>"; };
+		58ADB20B8920B04BC67D5CCE /* Pods-Alarmer Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alarmer Test.release.xcconfig"; path = "Target Support Files/Pods-Alarmer Test/Pods-Alarmer Test.release.xcconfig"; sourceTree = "<group>"; };
 		8D2A5BE029D0D7B60084FDCB /* Alarmer Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alarmer Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarmer_TestApp.swift; sourceTree = "<group>"; };
 		8D2A5BE529D0D7B60084FDCB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -25,6 +29,8 @@
 		8D2A5BEA29D0D7B80084FDCB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListView.swift; sourceTree = "<group>"; };
 		8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailView.swift; sourceTree = "<group>"; };
+		A8E30329FA9E844AC2350905 /* Pods_Alarmer_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alarmer_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B17C8D8B9245398CC55A82E5 /* Pods-Alarmer Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alarmer Test.debug.xcconfig"; path = "Target Support Files/Pods-Alarmer Test/Pods-Alarmer Test.debug.xcconfig"; sourceTree = "<group>"; };
 		ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -34,18 +40,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C5FA596C64DB05F13DA570F /* Pods_Alarmer_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E48BADF862CE417A3A9F5E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8E30329FA9E844AC2350905 /* Pods_Alarmer_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D2A5BD729D0D7B60084FDCB = {
 			isa = PBXGroup;
 			children = (
 				8D2A5BF129D0D8AF0084FDCB /* View */,
 				8D2A5BE229D0D7B60084FDCB /* Alarmer Test */,
 				8D2A5BE129D0D7B60084FDCB /* Products */,
+				BF43BBB612A221E774D51DB8 /* Pods */,
+				4E48BADF862CE417A3A9F5E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,10 +98,20 @@
 			children = (
 				8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */,
 				8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */,
+				3722759829EE25B600B0CCB4 /* TwilioManager.swift */,
 				ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */,
 				ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BF43BBB612A221E774D51DB8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B17C8D8B9245398CC55A82E5 /* Pods-Alarmer Test.debug.xcconfig */,
+				58ADB20B8920B04BC67D5CCE /* Pods-Alarmer Test.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,9 +121,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D2A5BEE29D0D7B80084FDCB /* Build configuration list for PBXNativeTarget "Alarmer Test" */;
 			buildPhases = (
+				1B40F174A46A9FE28DE146C0 /* [CP] Check Pods Manifest.lock */,
 				8D2A5BDC29D0D7B60084FDCB /* Sources */,
 				8D2A5BDD29D0D7B60084FDCB /* Frameworks */,
 				8D2A5BDE29D0D7B60084FDCB /* Resources */,
+				245DBCC420A2039AC1296870 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,12 +181,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B40F174A46A9FE28DE146C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Alarmer Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		245DBCC420A2039AC1296870 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alarmer Test/Pods-Alarmer Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alarmer Test/Pods-Alarmer Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alarmer Test/Pods-Alarmer Test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D2A5BDC29D0D7B60084FDCB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				ED7C5BD229E60BC10007F3AB /* CodeScanner.swift in Sources */,
+				3722759929EE25B600B0CCB4 /* TwilioManager.swift in Sources */,
 				ED7C5BD429E60BEF0007F3AB /* ScannerViewController.swift in Sources */,
 				8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */,
 				8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */,
@@ -285,6 +357,7 @@
 		};
 		8D2A5BEF29D0D7B80084FDCB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B17C8D8B9245398CC55A82E5 /* Pods-Alarmer Test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -313,6 +386,7 @@
 		};
 		8D2A5BF029D0D7B80084FDCB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58ADB20B8920B04BC67D5CCE /* Pods-Alarmer Test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
