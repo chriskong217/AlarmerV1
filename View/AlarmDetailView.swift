@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import Contacts
 
 extension Date {
     var hour12: Bool {
@@ -20,6 +21,8 @@ struct AlarmDetailView: View {
     @State private var isRecurring: Bool
     @State private var isLocationBased: Bool
     @State private var userInputMessage: String = "" // New state property for user input message
+    @State private var showingContactListView = false
+    @State private var contacts: [CNContact] = []
     
     // Create an instance of SMSManager
     let smsManager = SMSManager()
@@ -43,10 +46,29 @@ struct AlarmDetailView: View {
                     .labelsHidden()
                     .padding()
 
-                Form {
-                    TextField("Message", text: $message)
-                    TextField("Phone Number", text: $phoneNumber)
-                        .keyboardType(.phonePad)
+                List {
+                    Section {
+                                       TextField("Message", text: $message)
+                                       TextField("Phone Number", text: $phoneNumber)
+                                           .keyboardType(.phonePad)
+                                       
+                                       Button(action: {
+                                           requestContactsAccess { granted in
+                                               if granted {
+                                                   contacts = fetchContacts()
+                                                   showingContactListView.toggle()
+                                               }
+                                           }
+                                       }) {
+                                           Text("Access Contacts")
+                                       }
+                                       .sheet(isPresented: $showingContactListView) {
+                                           ContactsListView(contacts: contacts, onSelect: { selectedContact in
+                                               phoneNumber = selectedContact.phoneNumbers.first?.value.stringValue ?? ""
+                                               showingContactListView.toggle()
+                                           })
+                                       }
+                                   }
                     Toggle("Enabled", isOn: $isEnabled)
                     Toggle("Recurring", isOn: $isRecurring)
                     Toggle("Location Based", isOn: $isLocationBased)
