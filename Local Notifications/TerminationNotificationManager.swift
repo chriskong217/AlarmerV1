@@ -16,7 +16,7 @@ struct TerminationNotificationManager {
 
         let content = UNMutableNotificationContent()
         content.title = "Oops, you terminated Alarmer!"
-        content.subtitle = "Your alarm may not ring. Please leave Alarmer running in the background so that your alarm can ring with sound."
+        content.body = "Your alarm may not ring. Please leave Alarmer running in the background so that your alarm can ring with sound."
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: "terminationNotification", content: content, trigger: trigger)

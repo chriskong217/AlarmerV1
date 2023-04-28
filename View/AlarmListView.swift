@@ -1,6 +1,7 @@
 import SwiftUI
 import UserNotifications
 struct AlarmListView: View {
+    
     @EnvironmentObject var lnManager: LocalNotificationManager
     @State private var alarms: [Alarm] = []
     @State private var isPresentingAlarmDetailView = false
@@ -70,24 +71,45 @@ struct AlarmListView: View {
         }
     }
     var authorizedView: some View {
-        NavigationView {
-            ZStack {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(alarms.indices, id: \.self) { index in
-                            Button(action: {
-                                selectedAlarm = alarms[index]
-                            }) {
-                                AlarmRow(alarm: $alarms[index], onToggle: {
-                                    toggleAlarmEnabled(index)
-                                })
+            NavigationView {
+                ZStack {
+                    if alarms.isEmpty{
+                        VStack{
+                            Image(emptyAlarmsImageName)
+                                .resizable()
+                                .frame(width: 250, height:250)
+                                .scaledToFit()
+                                .opacity(0.5)
+                                .offset(y: -100)
+                                .padding(.bottom, 15)
+                            Text("No Alarms Added. Please Add One!")
+                                .font(.system(size: 20))
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .opacity(0.4)
+                                .foregroundColor(.gray)
+                                .offset(y: -100)
+                        }
+      
+                } else {
+                    // Your existing code to display the list of alarms
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(alarms.indices, id: \.self) { index in
+                                Button(action: {
+                                    selectedAlarm = alarms[index]
+                                }) {
+                                    AlarmRow(alarm: $alarms[index], onToggle: {
+                                        toggleAlarmEnabled(index)
+                                    })
+                                }
+                                .padding(.vertical, 15)
                             }
-                            .padding(.vertical, 15)
                         }
                     }
+                    .navigationTitle("Alarmers")
                 }
-                .navigationTitle("Alarmers")
-                .onAppear(perform: loadSavedAlarms)
+                
                 VStack {
                     Spacer()
                     HStack {
@@ -128,52 +150,55 @@ struct AlarmListView: View {
                 }
                 .accentColor(Color(red: 1, green: 0.72, blue: 0))
             }
+            .onAppear(perform: loadSavedAlarms)
+        }
+    }
+    
+    struct AlarmRow: View {
+        @Binding var alarm: Alarm
+        var onToggle: () -> Void
+        var body: some View {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(alarm.isEnabled
+                      ? Color(red: 1, green: 0.82, blue: 0.34)
+                      : Color(red: 0.89, green: 0.87, blue: 0.84)).frame(width: 326, height: 114).shadow(radius: 4, y: 4)
+                .overlay(
+                    HStack {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(alarm.isRecurring ? "Recurring" : "Not Recurring")
+                                .font(.subheadline)
+                                .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
+                            Text(Formatters.timeFormatter.string(from: alarm.time)).font(.system(size: 34))
+                                .fontWeight(.bold)
+                                .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
+                        }
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                onToggle()
+                            }
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 25)
+                                    .frame(width: 83, height: 41)
+                                    .foregroundColor(alarm.isEnabled ? Color(red: 1, green: 0.72, blue: 0) : .gray)
+                                Circle()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.white)
+                                    .offset(x: alarm.isEnabled ? 20 : -20)
+                            }
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
+                        .padding()
+                )
+        }
+    }
+    struct AlarmListView_Previews: PreviewProvider {
+        static var previews: some View {
+            AlarmListView()
+                .environmentObject(LocalNotificationManager())
         }
     }
 }
-struct AlarmRow: View {
-    @Binding var alarm: Alarm
-    var onToggle: () -> Void
-    var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .fill(alarm.isEnabled
-                  ? Color(red: 1, green: 0.82, blue: 0.34)
-                  : Color(red: 0.89, green: 0.87, blue: 0.84)).frame(width: 326, height: 114).shadow(radius: 4, y: 4)
-            .overlay(
-                HStack {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(alarm.isRecurring ? "Recurring" : "Not Recurring")
-                            .font(.subheadline)
-                            .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
-                        Text(Formatters.timeFormatter.string(from: alarm.time)).font(.system(size: 34))
-                            .fontWeight(.bold)
-                            .foregroundColor(alarm.isEnabled ? Color.black : Color(red: 0.44, green: 0.43, blue: 0.43))
-                    }
-                    Spacer()
-                    Button(action: {
-                        withAnimation {
-                            onToggle()
-                        }
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 83, height: 41)
-                                .foregroundColor(alarm.isEnabled ? Color(red: 1, green: 0.72, blue: 0) : .gray)
-                            Circle()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.white)
-                                .offset(x: alarm.isEnabled ? 20 : -20)
-                        }
-                    }
-                    .buttonStyle(BorderlessButtonStyle())
-                }
-                .padding()
-            )
-    }
-}
-struct AlarmListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlarmListView()
-            .environmentObject(LocalNotificationManager())
-    }
-}
+

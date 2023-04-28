@@ -12,12 +12,57 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         }
     }
     
+    @objc private func appDidBecomeActive() {
+        updateAlarmsState()
+    }
+    
+    func updateAlarmsState() {
+        notificationCenter.getDeliveredNotifications { [weak self] deliveredNotifications in
+            guard let self = self else { return }
+            
+            for deliveredNotification in deliveredNotifications {
+                let notificationId = deliveredNotification.request.identifier
+                if let index = self.alarms.firstIndex(where: { $0.id.uuidString == notificationId }) {
+                    if !self.alarms[index].isRecurring {
+                        DispatchQueue.main.async {
+                            self.alarms[index].isEnabled = false
+                        }
+                    }
+                }
+            }
+            
+            self.notificationCenter.getPendingNotificationRequests { [weak self] pendingRequests in
+                guard let self = self else { return }
+                
+                for request in pendingRequests {
+                    let notificationId = request.identifier
+                    if let index = self.alarms.firstIndex(where: { $0.id.uuidString == notificationId }) {
+                        if !self.alarms[index].isRecurring {
+                            let trigger = request.trigger as? UNCalendarNotificationTrigger
+                            let now = Date()
+                            let alarmTime = trigger?.nextTriggerDate()
+                            
+                            if let alarmTime = alarmTime, alarmTime < now {
+                                DispatchQueue.main.async {
+                                    self.alarms[index].isEnabled = false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     override init() {
         super.init()
         notificationCenter.delegate = self
         alarms = loadAlarms()
         // Register for the willTerminateNotification
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+
     }
     @objc private func appWillTerminate() {
         if hasEnabledAlarms() {
@@ -60,13 +105,15 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         let content = UNMutableNotificationContent()
         content.title = "Alarm"
         content.body = alarm.message
-        content.sound = .default
-        
-        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: alarm.time)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: alarm.isRecurring)
-        
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Alarm sound effect.mp3"))
+        let alarmHourMinute = Calendar.current.dateComponents([.hour, .minute], from: alarm.time)
+
+        let triggerDate = Calendar.current.date(bySettingHour: alarmHourMinute.hour!, minute: alarmHourMinute.minute!, second: 0, of: alarm.time)
+        let triggerComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate!)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: alarm.isRecurring)
+
         let request = UNNotificationRequest(identifier: alarm.id.uuidString, content: content, trigger: trigger)
-        
+
         notificationCenter.add(request) { error in
             if let error = error {
                 print("Error scheduling notification: \(error)")
@@ -74,20 +121,38 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         }
         safeAppendOrUpdate(alarm: alarm)
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        let notificationId = notification.request.identifier
-            
-        if let index = alarms.firstIndex(where: { $0.id.uuidString == notificationId }) {
+
+    func disableAlarm(id: UUID) {
+        if let index = alarms.firstIndex(where: { $0.id == id }) {
             alarms[index].isEnabled = false
         }
-        
-        // Check if the app is in the background
-        if UIApplication.shared.applicationState == .background {
-            return []
-        }
-        return [.sound, .banner]
     }
+
+    func updateAlarmList() {
+        DispatchQueue.main.async {
+            self.alarms = self.alarms
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let notificationId = response.notification.request.identifier
+
+        if let index = alarms.firstIndex(where: { $0.id.uuidString == notificationId }) {
+            if !alarms[index].isRecurring {
+                DispatchQueue.main.async {
+                    self.alarms[index].isEnabled = false
+                    self.updateAlarmList()
+                    self.saveAlarms()
+                    print("Updated alarm status: \(self.alarms[index])")
+
+                }
+            }
+        }
+        completionHandler()
+    }
+
+
+
     
     func openSettings() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -127,12 +192,16 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
     func saveAlarms() {
         if let jsonString = alarmsToJSONString(alarms: alarms) {
             UserDefaults.standard.set(jsonString, forKey: "alarms")
+            print("Alarms saved to UserDefaults: \(jsonString)")
+
         }
     }
     func loadAlarms() -> [Alarm] {
         if let jsonString = UserDefaults.standard.string(forKey: "alarms"), let alarms = alarmsFromJSONString(jsonString: jsonString) {
+            print("Alarms loaded from UserDefaults: \(jsonString)")
             return alarms
         }
+        print("No alarms found in UserDefaults")
         return []
     }
     

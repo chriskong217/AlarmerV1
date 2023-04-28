@@ -44,7 +44,7 @@ struct AlarmDetailView: View {
                             .labelsHidden()
                             .padding()
                         Form {
-                            TextField("Message", text: $message)
+                            TextField("Label", text: $message)
                             TextField("Phone Number", text: $phoneNumber)
                                 .keyboardType(.phonePad)
                             Toggle("Enabled", isOn: $isEnabled)
