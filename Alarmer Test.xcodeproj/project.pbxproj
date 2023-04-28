@@ -13,6 +13,7 @@
 		397C804829F5C474007439BF /* TerminationNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C804729F5C474007439BF /* TerminationNotificationManager.swift */; };
 		397C804F29F5CFEB007439BF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C804E29F5CFEB007439BF /* Alarm.swift */; };
 		397C805129F5D018007439BF /* AlarmListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C805029F5D018007439BF /* AlarmListViewModel.swift */; };
+		39D5B2BE29FC276B0050F39A /* Sound Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5B2BD29FC276B0050F39A /* Sound Constants.swift */; };
 		8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */; };
 		8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE529D0D7B60084FDCB /* ContentView.swift */; };
 		8D2A5BE829D0D7B80084FDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE729D0D7B80084FDCB /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		397C804729F5C474007439BF /* TerminationNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminationNotificationManager.swift; sourceTree = "<group>"; };
 		397C804E29F5CFEB007439BF /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		397C805029F5D018007439BF /* AlarmListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListViewModel.swift; sourceTree = "<group>"; };
+		39D5B2BD29FC276B0050F39A /* Sound Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sound Constants.swift"; sourceTree = "<group>"; };
 		8D2A5BE029D0D7B60084FDCB /* Alarmer Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alarmer Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarmer_TestApp.swift; sourceTree = "<group>"; };
 		8D2A5BE529D0D7B60084FDCB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				395C169D29F5FBB40093855C /* Image Constants.swift */,
+				39D5B2BD29FC276B0050F39A /* Sound Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				8D2A5BF729D0D9B70084FDCB /* AlarmDetailView.swift in Sources */,
 				397C805129F5D018007439BF /* AlarmListViewModel.swift in Sources */,
 				397C804629F5C442007439BF /* EnableNotifications.swift in Sources */,
+				39D5B2BE29FC276B0050F39A /* Sound Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -72,22 +72,42 @@ struct AlarmListView: View {
     var authorizedView: some View {
         NavigationView {
             ZStack {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(alarms.indices, id: \.self) { index in
-                            Button(action: {
-                                selectedAlarm = alarms[index]
-                            }) {
-                                AlarmRow(alarm: $alarms[index], onToggle: {
-                                    toggleAlarmEnabled(index)
-                                })
+                if alarms.isEmpty{
+                    VStack{
+                        Image(emptyAlarmsImageName)
+                            .resizable()
+                            .frame(width: 250, height:250)
+                            .scaledToFit()
+                            .opacity(0.5)
+                            .offset(y: -100)
+                            .padding(.bottom, 15)
+                        Text("No Alarms Added. Please Add One!")
+                            .font(.system(size: 20))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .opacity(0.4)
+                            .foregroundColor(.gray)
+                            .offset(y: -100)
+                    }
+
+                } else {
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(alarms.indices, id: \.self) { index in
+                                Button(action: {
+                                    selectedAlarm = alarms[index]
+                                }) {
+                                    AlarmRow(alarm: $alarms[index], onToggle: {
+                                        toggleAlarmEnabled(index)
+                                    })
+                                }
+                                .padding(.vertical, 15)
                             }
-                            .padding(.vertical, 15)
                         }
                     }
+                    .navigationTitle("Alarmers")
+                    .onAppear(perform: loadSavedAlarms)
                 }
-                .navigationTitle("Alarmers")
-                .onAppear(perform: loadSavedAlarms)
                 VStack {
                     Spacer()
                     HStack {

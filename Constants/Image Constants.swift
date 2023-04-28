@@ -8,3 +8,4 @@
 import Foundation
 
 let notificationperson = "undraw_Reminder_re_fe15"
+let emptyAlarmsImageName = "Alarmer App Icon Gray updated"
