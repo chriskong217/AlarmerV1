@@ -20,7 +20,6 @@ struct AlarmDetailView: View {
     @State private var isEnabled: Bool
     @State private var isRecurring: Bool
     @State private var isLocationBased: Bool
-    @State private var userInputMessage: String = "" // New state property for user input message
     @State private var showingContactListView = false
     @State private var contacts: [CNContact] = []
     
@@ -48,26 +47,29 @@ struct AlarmDetailView: View {
 
                 List {
                     Section {
-                                       TextField("Message", text: $message)
-                                       TextField("Phone Number", text: $phoneNumber)
+                        TextField("Input SMS Text", text: $message)
+                            .autocapitalization(.sentences)
+                        TextField("Phone Number", text: $phoneNumber)
                                            .keyboardType(.phonePad)
                                        
-                                       Button(action: {
-                                           requestContactsAccess { granted in
-                                               if granted {
-                                                   contacts = fetchContacts()
-                                                   showingContactListView.toggle()
-                                               }
-                                           }
-                                       }) {
-                                           Text("Access Contacts")
-                                       }
-                                       .sheet(isPresented: $showingContactListView) {
-                                           ContactsListView(contacts: contacts, onSelect: { selectedContact in
-                                               phoneNumber = selectedContact.phoneNumbers.first?.value.stringValue ?? ""
-                                               showingContactListView.toggle()
-                                           })
-                                       }
+                        Button(action: {
+                            requestContactsAccess { granted in
+                                if granted {
+                                    contacts = fetchContacts()
+                                    showingContactListView.toggle()
+                                }
+                            }
+                        }) {
+                            Text("Access Contacts")
+                        }
+                        .sheet(isPresented: $showingContactListView) {
+                            ContactsListView(contacts: contacts, onSelect: { selectedContact in
+                                phoneNumber = formatPhoneNumber(selectedContact.phoneNumbers.first?.value.stringValue ?? "")
+                                showingContactListView.toggle()
+                            })
+                        }
+
+
                                    }
                     Toggle("Enabled", isOn: $isEnabled)
                     Toggle("Recurring", isOn: $isRecurring)
@@ -75,9 +77,10 @@ struct AlarmDetailView: View {
 
                     // New section for the Send Test SMS button
                     Section {
-                        TextField("Input SMS Text", text: $userInputMessage)
-                            .autocapitalization(.sentences)
-                        Button(action: sendSMSTapped) {
+                        Button(action: testVerificationTapped) {
+                                                    Text("Test Verification")
+                                                        .foregroundColor(.blue)
+                        };                Button(action: sendSMSTapped) {
                             Text("Send Test SMS")
                                 .foregroundColor(.blue)
                         }
@@ -106,10 +109,10 @@ struct AlarmDetailView: View {
     // Function to send an SMS when the button is tapped
     func sendSMSTapped() {
         let accountSid = "ACcfae9a643457577632b828e0c493ac75"
-        let authToken = "dea24be94ea23cc19faaad863698e53f"
+        let authToken = "79f444133772a97856863b1385d0a13b"
         let fromPhoneNumber = "+18447397884"
-        let toPhoneNumber = "+14694016448"
-        let message = userInputMessage
+        let toPhoneNumber = phoneNumber
+        let message = message
         
         smsManager.sendSMS(accountSid: accountSid, authToken: authToken, fromPhoneNumber: fromPhoneNumber, toPhoneNumber: toPhoneNumber, message: message) { result in
             switch result {
@@ -122,7 +125,25 @@ struct AlarmDetailView: View {
             }
         }
     }
+    
+    // Format phone number to E.164 format
+    func formatPhoneNumber(_ phoneNumber: String) -> String {
+        let formattedNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        return "+\(formattedNumber)"
+    }
+    
+    func testVerificationTapped() {
+        let toPhoneNumber = formatPhoneNumber(phoneNumber)
+        sendVerificationToken(toPhoneNumber: toPhoneNumber) { success in
+            if success {
+                print("Verification message sent successfully")
+            } else {
+                print("Error sending verification message")
+            }
+        }
+    }
 }
+
 
 struct AlarmDetailView_Previews: PreviewProvider {
     static var previews: some View {

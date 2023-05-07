@@ -4,16 +4,20 @@
 //
 //  Created by user234695 on 4/26/23.
 //
-
+//requests access to user contacts then fetches said contacts
 import Contacts
+import ContactsUI
 
 func requestContactsAccess(completion: @escaping (Bool) -> Void) {
-    CNContactStore().requestAccess(for: .contacts) { granted, error in
-        DispatchQueue.main.async {
-            completion(granted)
+    let contactStore = CNContactStore()
+    contactStore.requestAccess(for: .contacts) { granted, error in
+        if let error = error {
+            print("Error requesting contacts access: \(error.localizedDescription)")
         }
+        completion(granted)
     }
 }
+
 
 func fetchContacts() -> [CNContact] {
     let store = CNContactStore()

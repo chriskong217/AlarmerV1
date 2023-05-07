@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C5FA596C64DB05F13DA570F /* Pods_Alarmer_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E30329FA9E844AC2350905 /* Pods_Alarmer_Test.framework */; };
 		3722759929EE25B600B0CCB4 /* TwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3722759829EE25B600B0CCB4 /* TwilioManager.swift */; };
+		379B46F82A09B6AE0048AAE8 /* VerificationTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B46F72A09B6AE0048AAE8 /* VerificationTokenManager.swift */; };
 		37AA538129F9BD59008A60B6 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA538029F9BD59008A60B6 /* ContactsManager.swift */; };
 		37AA538329F9BDDE008A60B6 /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA538229F9BDDE008A60B6 /* ContactsListView.swift */; };
 		8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		3722759829EE25B600B0CCB4 /* TwilioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwilioManager.swift; sourceTree = "<group>"; };
+		379B46F72A09B6AE0048AAE8 /* VerificationTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationTokenManager.swift; sourceTree = "<group>"; };
 		37AA538029F9BD59008A60B6 /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		37AA538229F9BDDE008A60B6 /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
 		58ADB20B8920B04BC67D5CCE /* Pods-Alarmer Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alarmer Test.release.xcconfig"; path = "Target Support Files/Pods-Alarmer Test/Pods-Alarmer Test.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				3722759829EE25B600B0CCB4 /* TwilioManager.swift */,
 				ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */,
 				37AA538029F9BD59008A60B6 /* ContactsManager.swift */,
+				379B46F72A09B6AE0048AAE8 /* VerificationTokenManager.swift */,
 				37AA538229F9BDDE008A60B6 /* ContactsListView.swift */,
 				ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */,
 			);
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379B46F82A09B6AE0048AAE8 /* VerificationTokenManager.swift in Sources */,
 				ED7C5BD229E60BC10007F3AB /* CodeScanner.swift in Sources */,
 				3722759929EE25B600B0CCB4 /* TwilioManager.swift in Sources */,
 				37AA538129F9BD59008A60B6 /* ContactsManager.swift in Sources */,
@@ -374,7 +378,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to your contacts in Alarmer to allow you to easily select a contact's phone number for sending alarm notifications via SMS";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Alarmer needs access to your contacts in order to send text messages to a recepient of your choice.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -404,7 +408,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to your contacts in Alarmer to allow you to easily select a contact's phone number for sending alarm notifications via SMS";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Alarmer needs access to your contacts in order to send text messages to a recepient of your choice.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

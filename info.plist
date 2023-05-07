@@ -10,7 +10,7 @@
     <string>We need access to your camera to take pictures.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>We need access to your photo library to save the pictures.</string>
-
+    <key>NSContactsUsageDescription</key>    <string>Alarmer needs access to your contacts to send messages to your friends.</string>
     <!-- Other keys -->
 </dict>
 </plist>

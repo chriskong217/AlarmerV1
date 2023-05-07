@@ -8,28 +8,32 @@
 import SwiftUI
 import Contacts
 
-struct ContactsListView: View {
-    let contacts: [CNContact]
-    let onSelect: (CNContact) -> Void
-    
-    init(contacts: [CNContact], onSelect: @escaping (CNContact) -> Void) {
-        self.contacts = contacts
-        self.onSelect = onSelect
-    }
-
-    var body: some View {
-        NavigationView {
-            List(contacts, id: \.identifier) { contact in
-                HStack {
-                    Text(contact.givenName)
-                    Text(contact.familyName)
-                }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    onSelect(contact)
-                }
-            }
-            .navigationTitle("Contacts")
-        }
+extension CNContact: Identifiable {
+    public var id: String {
+        return self.identifier
     }
 }
+
+struct ContactsListView: View {
+    var contacts: [CNContact]
+    var onSelect: (CNContact) -> Void
+    
+    var body: some View {
+        List(contacts) { contact in
+            Button(action: {
+                onSelect(contact)
+            }) {
+                VStack(alignment: .leading) {
+                    Text("\(contact.givenName) \(contact.familyName)")
+                    if let number = contact.phoneNumbers.first?.value.stringValue {
+                        Text(number)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
+        }
+    }
+    
+   
+}
+
