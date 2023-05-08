@@ -5,11 +5,17 @@
 <dict>
     <!-- Other keys -->
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need access to your location to check if you have moved.</string>
+    <string>"We need access to your location to check if you have moved."</string>
+
     <key>NSCameraUsageDescription</key>
-    <string>We need access to your camera to take pictures.</string>
+    <string>"We need access to your camera to take pictures."</string>
+
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>We need access to your photo library to save the pictures.</string>
+    <string>"We need access to your photo library to save the pictures."</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>"we needs access to your microphone to capture audio during barcode scanning."</string>
+
 
     <!-- Other keys -->
 </dict>
