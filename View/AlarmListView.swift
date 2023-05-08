@@ -71,26 +71,26 @@ struct AlarmListView: View {
         }
     }
     var authorizedView: some View {
-            NavigationView {
-                ZStack {
-                    if alarms.isEmpty{
-                        VStack{
-                            Image(emptyAlarmsImageName)
-                                .resizable()
-                                .frame(width: 250, height:250)
-                                .scaledToFit()
-                                .opacity(0.5)
-                                .offset(y: -100)
-                                .padding(.bottom, 15)
-                            Text("No Alarms Added. Please Add One!")
-                                .font(.system(size: 20))
-                                .multilineTextAlignment(.center)
-                                .padding()
-                                .opacity(0.4)
-                                .foregroundColor(.gray)
-                                .offset(y: -100)
-                        }
-      
+        NavigationView {
+            ZStack {
+                if alarms.isEmpty{
+                    VStack{
+                        Image(emptyAlarmsImageName)
+                            .resizable()
+                            .frame(width: 250, height:250)
+                            .scaledToFit()
+                            .opacity(0.5)
+                            .offset(y: -100)
+                            .padding(.bottom, 15)
+                        Text("No Alarms Added. Please Add One!")
+                            .font(.system(size: 20))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .opacity(0.4)
+                            .foregroundColor(.gray)
+                            .offset(y: -100)
+                    }
+
                 } else {
                     // Your existing code to display the list of alarms
                     ScrollView {
@@ -108,6 +108,7 @@ struct AlarmListView: View {
                         }
                     }
                     .navigationTitle("Alarmers")
+                    .onAppear(perform: loadSavedAlarms)
                 }
                 
                 VStack {
