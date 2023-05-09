@@ -1,6 +1,8 @@
 //This is the current AlarmDetailView
 import SwiftUI
 import UIKit
+import Contacts
+
 extension Date {
     var hour12: Bool {
         let hour = Calendar.current.component(.hour, from: self)
@@ -21,6 +23,10 @@ struct AlarmDetailView: View {
     @State private var isEnabled: Bool
     @State private var isRecurring: Bool
     @State private var isLocationBased: Bool
+    @State private var showingContactListView = false
+    @State private var contacts: [CNContact] = []
+    
+    let smsManager = SMSManager()
     
     
     init(alarm: Binding<Alarm>, showDeleteButton: Binding<Bool>, onSave: ((Alarm) -> Void)? = nil, onDelete: (() -> Void)? = nil) {
@@ -54,6 +60,15 @@ struct AlarmDetailView: View {
                             Toggle("Recurring", isOn: $isRecurring)
                             Toggle("Location Based", isOn: $isLocationBased)
                         }
+                        // New section for the Send Test SMS button
+                                            Section {
+                                                Button(action: testVerificationTapped) {
+                                                                            Text("Test Verification")
+                                                                                .foregroundColor(.blue)
+                                                };                Button(action: sendSMSTapped) {
+                                                    Text("Send Test SMS")
+                                                        .foregroundColor(.blue)
+                                                }
                     }
                     .padding(.bottom, onDelete != nil ? 60 : 0)
                     .navigationTitle("Alarm Details")
@@ -79,6 +94,43 @@ struct AlarmDetailView: View {
                         }
                     }
                 }
+                    // Function to send an SMS when the button is tapped
+                       func sendSMSTapped() {
+                           let accountSid = "ACcfae9a643457577632b828e0c493ac75"
+                           let authToken = "79f444133772a97856863b1385d0a13b"
+                           let fromPhoneNumber = "+18447397884"
+                           let toPhoneNumber = phoneNumber
+                           let message = message
+                           
+                           smsManager.sendSMS(accountSid: accountSid, authToken: authToken, fromPhoneNumber: fromPhoneNumber, toPhoneNumber: toPhoneNumber, message: message) { result in
+                               switch result {
+                               case .success(let sent):
+                                   if sent {
+                                       print("SMS sent successfully")
+                                   }
+                               case .failure(let error):
+                                   print("Error sending SMS: \(error)")
+                               }
+                           }
+                       }
+                       
+                       // Format phone number to E.164 format
+                       func formatPhoneNumber(_ phoneNumber: String) -> String {
+                           let formattedNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                           return "+\(formattedNumber)"
+                       }
+                       
+                       func testVerificationTapped() {
+                           let toPhoneNumber = formatPhoneNumber(phoneNumber)
+                           sendVerificationToken(toPhoneNumber: toPhoneNumber) { success in
+                               if success {
+                                   print("Verification message sent successfully")
+                               } else {
+                                   print("Error sending verification message")
+                               }
+                           }
+                       }
+                   }
 
                 if showDeleteButton {
                     VStack {
