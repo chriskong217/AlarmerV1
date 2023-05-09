@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		39EFADD229E7712700D09081 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 39EFADD129E7712700D09081 /* Collections */; };
+		5C2B2D122A09A4A400C6DCF1 /* Alarmer-Test-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CB528B029F1E53600EE43A3 /* Alarmer-Test-Info.plist */; };
 		8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */; };
 		8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE529D0D7B60084FDCB /* ContentView.swift */; };
 		8D2A5BE829D0D7B80084FDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE729D0D7B80084FDCB /* Assets.xcassets */; };
@@ -157,6 +158,7 @@
 			files = (
 				8D2A5BEB29D0D7B80084FDCB /* Preview Assets.xcassets in Resources */,
 				8D2A5BE829D0D7B80084FDCB /* Assets.xcassets in Resources */,
+				5C2B2D122A09A4A400C6DCF1 /* Alarmer-Test-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
