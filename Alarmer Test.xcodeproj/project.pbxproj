@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		39151A0D2A084315000114C8 /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39151A0C2A084315000114C8 /* AlarmModel.swift */; };
 		394960E32A09B1BA00925C2C /* Alarm sound effect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 394960E22A09B1BA00925C2C /* Alarm sound effect.mp3 */; };
 		395C169E29F5FBB40093855C /* Image Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C169D29F5FBB40093855C /* Image Constants.swift */; };
@@ -16,15 +17,19 @@
 		397C804F29F5CFEB007439BF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C804E29F5CFEB007439BF /* Alarm.swift */; };
 		397C805129F5D018007439BF /* AlarmListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C805029F5D018007439BF /* AlarmListViewModel.swift */; };
 		39D5B2BE29FC276B0050F39A /* Sound Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5B2BD29FC276B0050F39A /* Sound Constants.swift */; };
+
 		8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */; };
 		8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE529D0D7B60084FDCB /* ContentView.swift */; };
 		8D2A5BE829D0D7B80084FDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BE729D0D7B80084FDCB /* Assets.xcassets */; };
 		8D2A5BEB29D0D7B80084FDCB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D2A5BEA29D0D7B80084FDCB /* Preview Assets.xcassets */; };
 		8D2A5BF529D0D8F60084FDCB /* AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */; };
 		8D2A5BF729D0D9B70084FDCB /* AlarmDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */; };
+		ED7C5BD229E60BC10007F3AB /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */; };
+		ED7C5BD429E60BEF0007F3AB /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
 		39151A0C2A084315000114C8 /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
 		394960E22A09B1BA00925C2C /* Alarm sound effect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Alarm sound effect.mp3"; path = "../../../Downloads/Alarm sound effect.mp3"; sourceTree = "<group>"; };
 		395C169D29F5FBB40093855C /* Image Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image Constants.swift"; sourceTree = "<group>"; };
@@ -34,6 +39,7 @@
 		397C804E29F5CFEB007439BF /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		397C805029F5D018007439BF /* AlarmListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListViewModel.swift; sourceTree = "<group>"; };
 		39D5B2BD29FC276B0050F39A /* Sound Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sound Constants.swift"; sourceTree = "<group>"; };
+
 		8D2A5BE029D0D7B60084FDCB /* Alarmer Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alarmer Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarmer_TestApp.swift; sourceTree = "<group>"; };
 		8D2A5BE529D0D7B60084FDCB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,6 +47,8 @@
 		8D2A5BEA29D0D7B80084FDCB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListView.swift; sourceTree = "<group>"; };
 		8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailView.swift; sourceTree = "<group>"; };
+		ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
+		ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39EFADD229E7712700D09081 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +130,7 @@
 		8D2A5BE229D0D7B60084FDCB /* Alarmer Test */ = {
 			isa = PBXGroup;
 			children = (
+				5CB528B029F1E53600EE43A3 /* Alarmer-Test-Info.plist */,
 				8D2A5BE329D0D7B60084FDCB /* Alarmer_TestApp.swift */,
 				8D2A5BE529D0D7B60084FDCB /* ContentView.swift */,
 				8D2A5BE729D0D7B80084FDCB /* Assets.xcassets */,
@@ -144,6 +154,8 @@
 				397C804429F5C430007439BF /* SubViews */,
 				8D2A5BF429D0D8F60084FDCB /* AlarmListView.swift */,
 				8D2A5BF629D0D9B70084FDCB /* AlarmDetailView.swift */,
+				ED7C5BD129E60BC10007F3AB /* CodeScanner.swift */,
+				ED7C5BD329E60BEF0007F3AB /* ScannerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,6 +176,9 @@
 			dependencies = (
 			);
 			name = "Alarmer Test";
+			packageProductDependencies = (
+				39EFADD129E7712700D09081 /* Collections */,
+			);
 			productName = "Alarmer Test";
 			productReference = 8D2A5BE029D0D7B60084FDCB /* Alarmer Test.app */;
 			productType = "com.apple.product-type.application";
@@ -192,6 +207,9 @@
 				Base,
 			);
 			mainGroup = 8D2A5BD729D0D7B60084FDCB;
+			packageReferences = (
+				39EFADD029E7712700D09081 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 8D2A5BE129D0D7B60084FDCB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -219,6 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C5BD229E60BC10007F3AB /* CodeScanner.swift in Sources */,
+				ED7C5BD429E60BEF0007F3AB /* ScannerViewController.swift in Sources */,
 				8D2A5BE629D0D7B60084FDCB /* ContentView.swift in Sources */,
 				8D2A5BE429D0D7B60084FDCB /* Alarmer_TestApp.swift in Sources */,
 				397C804829F5C474007439BF /* TerminationNotificationManager.swift in Sources */,
@@ -359,21 +379,31 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview Content\"";
+
 				DEVELOPMENT_TEAM = G2C2L6A2CR;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Alarmer-Test-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+
 				PRODUCT_BUNDLE_IDENTIFIER = ChrisKong.Alarmer;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -388,22 +418,32 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+
 				DEVELOPMENT_ASSET_PATHS = "\"Alarmer Test/Preview Content\"";
 				DEVELOPMENT_TEAM = G2C2L6A2CR;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Alarmer-Test-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+
 				PRODUCT_BUNDLE_IDENTIFIER = ChrisKong.Alarmer;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -433,6 +473,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39EFADD029E7712700D09081 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39EFADD129E7712700D09081 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39EFADD029E7712700D09081 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D2A5BD829D0D7B60084FDCB /* Project object */;
 }

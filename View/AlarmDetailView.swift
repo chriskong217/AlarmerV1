@@ -7,6 +7,7 @@ extension Date {
         return hour >= 12
     }
 }
+
 struct AlarmDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var alarm: Alarm
@@ -44,7 +45,9 @@ struct AlarmDetailView: View {
                             .labelsHidden()
                             .padding()
                         Form {
+
                             TextField("Label", text: $message)
+
                             TextField("Phone Number", text: $phoneNumber)
                                 .keyboardType(.phonePad)
                             Toggle("Enabled", isOn: $isEnabled)
@@ -66,14 +69,17 @@ struct AlarmDetailView: View {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button("Save") {
                                 let updatedAlarm = Alarm(id: alarm.id, time: selectedTime, message: message, phoneNumber: phoneNumber, isEnabled: isEnabled, isRecurring: isRecurring)
+
                                 if let onSave = onSave {
                                     onSave(updatedAlarm)
                                 }
+
                                 presentationMode.wrappedValue.dismiss()
                             }.foregroundColor(Color(red: 1, green: 0.72, blue: 0))
                         }
                     }
                 }
+
                 if showDeleteButton {
                     VStack {
                             Spacer()
@@ -95,6 +101,7 @@ struct AlarmDetailView: View {
             }
         }
     }
+
 struct AlarmDetailView_Previews: PreviewProvider {
     static var previews: some View {
         AlarmDetailView(alarm: .constant(Alarm(time: Date(), message: "Wake up!", phoneNumber: "+1234567890", isEnabled: true, isRecurring: true)), showDeleteButton: .constant(true), onSave: { _ in })

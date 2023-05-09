@@ -1,12 +1,15 @@
+//This is the current AlarmListView
 import SwiftUI
 import UserNotifications
 struct AlarmListView: View {
+
     
     @EnvironmentObject var lnManager: LocalNotificationManager
     @State private var alarms: [Alarm] = []
     @State private var isPresentingAlarmDetailView = false
     @State private var selectedAlarm: Alarm?
     @State private var showDeleteButton: Bool = false
+
     @State private var showEnableNotificationsView = false
     @State private var proceedWithoutAuth: Bool = false
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = false
@@ -98,14 +101,19 @@ struct AlarmListView: View {
                             ForEach(alarms.indices, id: \.self) { index in
                                 Button(action: {
                                     selectedAlarm = alarms[index]
+
                                 }) {
                                     AlarmRow(alarm: $alarms[index], onToggle: {
                                         toggleAlarmEnabled(index)
                                     })
                                 }
+
                                 .padding(.vertical, 15)
+
                             }
+                            .padding(.vertical, 15) // Add this line for top and bottom padding
                         }
+
                     }
                     .navigationTitle("Alarmers")
                     .onAppear(perform: loadSavedAlarms)
@@ -125,8 +133,12 @@ struct AlarmListView: View {
                                 Image(systemName: "plus")
                                     .foregroundColor(.white)
                                     .font(.system(size: 40, weight: .bold))
+
                             }
+                            .padding(.bottom, 20)
+                            .padding(.trailing, 25)
                         }
+
                         .padding(.bottom, 20)
                         .padding(.trailing, 25)
                     }
@@ -154,6 +166,7 @@ struct AlarmListView: View {
             .onAppear(perform: loadSavedAlarms)
         }
     }
+
     
     struct AlarmRow: View {
         @Binding var alarm: Alarm
@@ -200,6 +213,7 @@ struct AlarmListView: View {
             AlarmListView()
                 .environmentObject(LocalNotificationManager())
         }
+
     }
 }
 
