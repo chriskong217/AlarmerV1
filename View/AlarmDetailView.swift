@@ -81,50 +81,94 @@ struct AlarmDetailView: View {
     
     
     var body: some View {
-        NavigationView {
-            VStack {
-                DatePicker("", selection: $selectedTime, displayedComponents: [.hourAndMinute])
-                    .datePickerStyle(WheelDatePickerStyle())
-                    .labelsHidden()
-                    .padding()
-                Form {
-                    TextField("Label", text: $message)
-                    TextField("Phone Number", text: $phoneNumber)
-                        .keyboardType(.phonePad)
-                    Toggle("Enabled", isOn: $isEnabled)
-                    Toggle("Recurring", isOn: $isRecurring)
-                    Toggle("Location Based", isOn: $isLocationBased)
-                }
-                // New section for the Send Test SMS button
-                Section {
-                    Button(action: testVerificationTapped) {
-                        Text("Test Verification")
-                            .foregroundColor(.blue)
-                    }
-                    Button(action: sendSMSTapped) {
-                        Text("Send Test SMS")
-                            .foregroundColor(.blue)
-                    }
-                }
-                .padding(.bottom, onDelete != nil ? 60 : 0)
-            }
-            .navigationTitle("Alarm Details")
-            // Hide the navigation bar
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .foregroundColor(Color(red: 1, green: 0.72, blue: 0))
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        let updatedAlarm = Alarm(id: alarm.id, time: selectedTime, message: message, phoneNumber: phoneNumber, isEnabled: isEnabled, isRecurring: isRecurring)
+            ZStack {
+                NavigationView {
+                    VStack {
+                        DatePicker("", selection: $selectedTime, displayedComponents: [.hourAndMinute])
+                            .datePickerStyle(WheelDatePickerStyle())
+                            .labelsHidden()
+                            .padding()
+                        Form {
 
-                        if let onSave = onSave {
-                            onSave(updatedAlarm)
+                            TextField("Label", text: $message)
+
+                            TextField("Phone Number", text: $phoneNumber)
+                                .keyboardType(.phonePad)
+                            Toggle("Enabled", isOn: $isEnabled)
+                            Toggle("Recurring", isOn: $isRecurring)
+                            Toggle("Location Based", isOn: $isLocationBased)
                         }
+                        // New section for the Send Test SMS button
+                                            Section {
+                                                Button(action: testVerificationTapped) {
+                                                                            Text("Test Verification")
+                                                                                .foregroundColor(.blue)
+                                                };                Button(action: sendSMSTapped) {
+                                                    Text("Send Test SMS")
+                                                        .foregroundColor(.blue)
+                                                }
+                    }
+                    .padding(.bottom, onDelete != nil ? 60 : 0)
+                    .navigationTitle("Alarm Details")
+                    // Hide the navigation bar
+                    .navigationBarBackButtonHidden(true)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Cancel") {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            .foregroundColor(Color(red: 1, green: 0.72, blue: 0))
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Save") {
+                                let updatedAlarm = Alarm(id: alarm.id, time: selectedTime, message: message, phoneNumber: phoneNumber, isEnabled: isEnabled, isRecurring: isRecurring)
+
+                                if let onSave = onSave {
+                                    onSave(updatedAlarm)
+                                }
+
+                                presentationMode.wrappedValue.dismiss()
+                            }.foregroundColor(Color(red: 1, green: 0.72, blue: 0))
+                        }
+                    }
+                }
+                    // Function to send an SMS when the button is tapped
+                       func sendSMSTapped() {
+                           let accountSid = "ACcfae9a643457577632b828e0c493ac75"
+                           let authToken = "79f444133772a97856863b1385d0a13b"
+                           let fromPhoneNumber = "+18447397884"
+                           let toPhoneNumber = phoneNumber
+                           let message = message
+                           
+                           smsManager.sendSMS(accountSid: accountSid, authToken: authToken, fromPhoneNumber: fromPhoneNumber, toPhoneNumber: toPhoneNumber, message: message) { result in
+                               switch result {
+                               case .success(let sent):
+                                   if sent {
+                                       print("SMS sent successfully")
+                                   }
+                               case .failure(let error):
+                                   print("Error sending SMS: \(error)")
+                               }
+                           }
+                       }
+                       
+                       // Format phone number to E.164 format
+                       func formatPhoneNumber(_ phoneNumber: String) -> String {
+                           let formattedNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                           return "+\(formattedNumber)"
+                       }
+                       
+                       func testVerificationTapped() {
+                           let toPhoneNumber = formatPhoneNumber(phoneNumber)
+                           sendVerificationToken(toPhoneNumber: toPhoneNumber) { success in
+                               if success {
+                                   print("Verification message sent successfully")
+                               } else {
+                                   print("Error sending verification message")
+                               }
+                           }
+                       }
+                   }
 
                         presentationMode.wrappedValue.dismiss()
                     }.foregroundColor(Color(red: 1, green: 0.72, blue: 0))
