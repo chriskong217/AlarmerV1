@@ -37,7 +37,7 @@ extension CodeScannerView {
         }
 
         required init?(coder: NSCoder) {
-            self.showViewfinder = false
+            self.showViewfinder = true
             super.init(coder: coder)
         }
         
