@@ -138,18 +138,23 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         let notificationId = response.notification.request.identifier
 
         if let index = alarms.firstIndex(where: { $0.id.uuidString == notificationId }) {
-            if !alarms[index].isRecurring {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                // If alarm is not recurring, disable it
+                if !self.alarms[index].isRecurring {
                     self.alarms[index].isEnabled = false
                     self.updateAlarmList()
                     self.saveAlarms()
                     print("Updated alarm status: \(self.alarms[index])")
-
                 }
+                
+                // Present the ScannerViewController for all alarms
+                let scanViewController = CodeScannerView.ScannerViewController()
+                UIApplication.shared.windows.first?.rootViewController?.present(scanViewController, animated: true, completion: nil)
             }
         }
         completionHandler()
     }
+
 
 
 

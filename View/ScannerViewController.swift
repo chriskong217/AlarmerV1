@@ -37,7 +37,7 @@ extension CodeScannerView {
         }
 
         required init?(coder: NSCoder) {
-            self.showViewfinder = true
+            self.showViewfinder = false
             super.init(coder: coder)
         }
         
@@ -92,9 +92,8 @@ extension CodeScannerView {
 
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.numberOfLines = 10
-            label.text = "You're running in the simulator, which means the camera isn't available. Tap anywhere to send back some simulated data." + "Test Data"    //String(ScanResult)
-          //  label.text = "Test Data"
+            label.numberOfLines = 0
+            label.text = "You're running in the simulator, which means the camera isn't available. Tap anywhere to send back some simulated data."
             label.textAlignment = .center
 
             let button = UIButton()
@@ -164,7 +163,16 @@ extension CodeScannerView {
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
+        
+        
+        init() {
+            // Initialize all your properties here
+            self.showViewfinder = true // or false, depending on what you want the default to be
+            
+            super.init(nibName: nil, bundle: nil)
+        }
 
+        
         override public func viewDidLoad() {
             super.viewDidLoad()
             self.addOrientationDidChangeObserver()
